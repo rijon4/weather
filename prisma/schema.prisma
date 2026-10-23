@@ -1,0 +1,20 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Favorite {
+  id        Int      @id @default(autoincrement())
+  name      String
+  country   String?
+  admin1    String?
+  latitude  Float
+  longitude Float
+  createdAt DateTime @default(now())
+
+  @@unique([latitude, longitude])
+}
